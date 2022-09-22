@@ -1,0 +1,34 @@
+Informe del Proyecto Moogle
+estudiante: Carlos Manuel Garcia Rodriguez C121
+
+Para realizar este proyecto me ha basado en los diccionarios, como tengo q cargar los documentos una sola vez durante el build,hice una nueva clase llamada build donde tengo los metodos q voy a ejecutar mientras levanta el programa.
+Dichos metodos llenan unos diccionarios q tengo declarados en la clase moogle y hago los llamados a esos metodos desde la clase program para q se ejecuten antes de que se inicie la app.
+Los diccionaris que se llenan son:
+Main- diccionario donde la llave es la direccion de cada documento y su valor es otro diccionario q tiene de llave las palabras de cada documento y de valor la cantidad de veces q se repiten en el texto
+Tf- al igual q main es un diccionario de diccionarios donde se almacenan los documentos y a cada uno se le asocia sus palabras y el idf de esas palabras en ese documento
+idf- es un diccionario string-double donde se almacenan todas las palabras de toodos los docuentos sin repetir con su idf
+cercan- un diccionario donde su llave es la direcciion del documento su valor es otro diccionario q tiene de llave las palabras de ese documento y su valor es una lista donde se almacenan todas las palabras cercanas a esa palabra a lo largo del texto
+
+De modo q ya cuando se inicia la pagina tengo todos los datos para realizar la busqueda casi al momento de cualquier query
+Al momento de introducir la query tengo algunos metodos para hacer mas simple el trabajo, tengo un metodo para separar los operadores de busqueda con el metodo replace de modo q no importa si los operadores vienen juntos o separados a la palabra igual funciona
+Hay otro metodo llamado separator q separa la string query en un array de palabras quitando cualquier simbolo raro q no este ligado a la busqueda 
+Y la query tambien pasa por varios metodos q identifican los operadores de busqueda y almacenan en un diccionario las palabras modificadas y q operador las modifican para tenerlo en cuenta mas tarde
+
+luego a partir de la query y los tf idf almacenados de las palabras en los diccionarios y teniendo en cuenta los operadores de busqueda antes mencionados guardo ya los documentos con su score final en un diccionario string-double llamado score 
+por ejemplo si los operadores de aparecer o no aparecer modifican a una palabra de la query a la hora de calcular el score del documento y agregarlos a score usando el metodo constains key de los diccionarios remuevo el docuemnto de score dependiendo del operador y de si esos documentos contienen la palabra o no'
+si el operador de cercania aparece modificando una pareja de palabras llamo a un metodo boolean q busca esas palabras en el diccionario cercan y me devuelve true si las palabras aparecen cerca en el documento y modifico el score
+con el operador de importancia es solo modificar el score directamente
+
+
+los documentos con muy bajo score o 0 son removidos del diccionario score, 
+ 
+relleno un array de search result de 5 q es la cantidad de resultados q muestro originalmente a partir de los pares almacenados en score usando el max value y lo devuelvo
+
+ahora si la busqueda da pocos resultados el programa analiza si hay alguna palabra de la query q no encontro coincidencias en los documentos y ejecuta un metodo q busca mediante la distancia de levenstein cual palabra se le asemeja mas en el dicionario idf y la devuelve como sugerencia
+
+ahora como devuelvo pocos resultados agrege un boton a la interfaz q es el boton mostrar mas resultados, si se oprime ese boton se mostraran 10 resultados en vez de 5, y la cantidad de resultados mostrados es muy facil de modificar en el codigo
+
+para el snipet lo q hago es en los documentos q muestro busco la palabra con mas tf de la query en ese docuemnto y relleno un array de 50 espacios con varias partes del texto donde aparece esa palabra ,de forma q muestro varias partes del documento
+tambien remarco esas palabras de la busqueda cuando se muestran en el snipet 
+
+la sugerencia la cambie por un boton para q si se hace click sobre el haga la busqueda con lo q muestra la sugerencia
