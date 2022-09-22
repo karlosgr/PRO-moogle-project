@@ -1,0 +1,65 @@
+﻿@page "/"
+
+@*<img src="D:\moogle-main\search_FILL0_wght400_GRAD0_opsz48.png" alt="moogle">*@
+<PageTitle>Moogle!</PageTitle>
+
+<h1>🔍 Moogle!</h1>
+
+
+<input class="p-1 my-4 barra" @bind="query" placeholder="Introduzca su búsqueda" >
+
+<button type="default" class="btn btn-primary boton" @onclick="RunQuery"></button>
+
+@if (!string.IsNullOrEmpty(result.Suggestion)) {
+    <div class="suggestion">
+        <p>¿Quisite decir <button class="suger"  @onclick="buscarsugerencia">@result.Suggestion</button>?</p>  
+    </div>
+}
+
+<ul class="results">
+@foreach (var item in result.Items()) {
+    <li>
+        <div class="item">
+            <p class="title">@item.Title</p>
+            <p>...@((MarkupString) @item.Snippet) ...</p>
+        </div>
+    </li>
+}
+
+
+
+@if(MoogleEngine.Moogle.cantidadderesults>5 && presionarmostrar==false){
+<button class="boton-ver-mas"@onclick="Mostrar">Mostrar mas resultados</button>
+MoogleEngine.Moogle.cantidadderesults=0;
+}
+
+</ul>
+
+@code {
+    public static bool presionarmostrar=false;
+    private string query = "";
+    private SearchResult result = new SearchResult();
+
+    private void RunQuery() {
+        if(presionarmostrar==true) {presionarmostrar=false;}
+        
+        result = Moogle.Query(query);
+        
+    }
+
+    private void buscarsugerencia(){
+    if(presionarmostrar==true) {presionarmostrar=false;}    
+    
+    result=Moogle.Query(result.Suggestion);
+    
+    query=result.Suggestion;
+
+    }
+    private void Mostrar()
+    {
+      Moogle.ensenar=true; 
+      RunQuery();
+      presionarmostrar=true; 
+    }
+}
+

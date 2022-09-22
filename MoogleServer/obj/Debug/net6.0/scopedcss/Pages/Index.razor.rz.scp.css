@@ -1,0 +1,45 @@
+.results[b-56lu1l4lic] {
+    text-align: left;
+}
+
+.item .title[b-56lu1l4lic] {
+    font-size: large;
+    font-weight: bold;
+}
+
+.barra[b-56lu1l4lic]{
+    width: 500px;
+    border-radius: 15px;
+    border-width: medium;
+    border-color: black;
+}
+
+.boton[b-56lu1l4lic]{
+    background-color: darkgray;
+    border-color: black!important;
+    border-radius: 50px;
+    width: 50px;
+    border-color: black;
+    border:none;
+    height: 50px;
+    background-image:url("search_FILL0_wght400_GRAD0_opsz48.png") ;
+    background-attachment: fixed;
+    background-size: auto;
+    background-repeat:inherit;
+   
+}
+.boton-ver-mas[b-56lu1l4lic]{
+
+    border-color: black;
+    border-radius: 20px;
+    padding: 5px 18px; 
+
+}
+.suger[b-56lu1l4lic]{
+    color: rgb(0, 195, 255);
+    border: none;
+    text-decoration: underline;
+    background-color: transparent;
+    font-size: large;
+
+}
